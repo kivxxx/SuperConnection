@@ -43,7 +43,7 @@ var dataTable = await dataAccess.ExecuteQueryAsync(
 );
 ```
 
-### 2. 執行交易
+### 2. 執行交換
 
 ```csharp
 await dataAccess.ExecuteTransactionAsync(async (transaction) =>
@@ -60,7 +60,7 @@ await dataAccess.ExecuteTransactionAsync(async (transaction) =>
 });
 ```
 
-### 3. 查詢單一值
+### 3. 查詢指令
 
 ```csharp
 // 查詢數量
@@ -73,7 +73,7 @@ var name = await dataAccess.ExecuteScalarAsync<string>(
 );
 ```
 
-### 4. 執行非查詢命令
+### 4. 非查詢指令
 
 ```csharp
 // 插入資料
