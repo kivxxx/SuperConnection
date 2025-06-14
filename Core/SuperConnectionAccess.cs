@@ -221,7 +221,12 @@ namespace Kiv.SuperConnection
                 throw new InvalidOperationException("交易操作必須使用連線池模式");
             }
 
-            using var connection = await _connectionManager!.GetConnectionAsync();
+            if (_connectionManager == null)
+            {
+                throw new InvalidOperationException("連線管理物件尚未初始化。");
+            }
+
+            using var connection = await _connectionManager.GetConnectionAsync();
             using var transaction = connection.BeginTransaction();
 
             try
@@ -245,6 +250,10 @@ namespace Kiv.SuperConnection
         /// <returns>查詢結果資料表</returns>
         public async Task<DataTable> ExecuteQueryWithDisconnectAsync(string query, Dictionary<string, object>? parameters = null)
         {
+            if (_connectionManager == null)
+            {
+                throw new InvalidOperationException("連線管理物件尚未初始化。");
+            }
             var connection = await _connectionManager.GetConnectionAsync();
             try
             {
