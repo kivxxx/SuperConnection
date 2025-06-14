@@ -1,39 +1,16 @@
 # SuperConnection
 
-SuperConnection 是一個高效能的 SQL Server 資料庫連線管理與資料存取元件，專為 .NET 應用程式設計。
+SuperConnection 是一個高效能的 SQL Server 資料庫連線管理與資料存取元件。
 
-## 功能列表
-
-1. **連線管理**
-   - 自動連線池管理
-   - 自動重連機制
-   - 連線狀態監控
-   - 資源自動釋放
-
-2. **資料操作**
-   - 非同步查詢
-   - 交易處理
-   - 參數化查詢
-   - 批次處理
-
-## 系統需求
-
-- .NET 6.0 或更高版本
-- SQL Server 2012 或更高版本
-- Microsoft.Data.SqlClient 5.1.4 或更高版本
-
-## 使用方法
-
-### 1. 基本查詢
+## 快速開始
 
 ```csharp
 using Kiv.SuperConnection;
-using Microsoft.Data.SqlClient;
 
 // 建立連線字串
 string connectionString = "Server=localhost;Database=TestDB;User Id=sa;Password=YourPassword;";
 
-// 建立資料存取物件
+// 建立資料存取物件（使用連線池）
 using var dataAccess = new SuperConnectionAccess(connectionString);
 
 // 查詢資料
@@ -41,14 +18,23 @@ var dataTable = await dataAccess.ExecuteQueryAsync(
     "SELECT * FROM Users WHERE Age >= @Age",
     new Dictionary<string, object> { { "@Age", 18 } }
 );
-```
 
-### 2. 執行交易
+// 執行非查詢命令
+var affectedRows = await dataAccess.ExecuteNonQueryAsync(
+    "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)",
+    new Dictionary<string, object>
+    {
+        { "@Name", "測試使用者" },
+        { "@Age", 25 }
+    }
+);
 
-```csharp
+// 查詢單一值
+var count = await dataAccess.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Users");
+
+// 執行交易
 await dataAccess.ExecuteTransactionAsync(async (transaction) =>
 {
-    // 插入資料
     await dataAccess.ExecuteNonQueryAsync(
         "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)",
         new Dictionary<string, object>
@@ -60,53 +46,54 @@ await dataAccess.ExecuteTransactionAsync(async (transaction) =>
 });
 ```
 
-### 3. 查詢單一值
+## 連線模式
+
+### 1. 連線池模式（預設）
 
 ```csharp
-// 查詢數量
-var count = await dataAccess.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Users");
+// 建立資料存取物件（使用連線池）
+using var dataAccess = new SuperConnectionAccess(connectionString);
 
-// 查詢字串
-var name = await dataAccess.ExecuteScalarAsync<string>(
-    "SELECT Name FROM Users WHERE Id = @Id",
-    new Dictionary<string, object> { { "@Id", 1 } }
-);
-```
-
-### 4. 執行非查詢命令
-
-```csharp
-// 插入資料
-await dataAccess.ExecuteNonQueryAsync(
-    "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)",
-    new Dictionary<string, object>
-    {
-        { "@Name", "測試使用者" },
-        { "@Age", 25 }
-    }
-);
-
-// 更新資料
-await dataAccess.ExecuteNonQueryAsync(
-    "UPDATE Users SET Age = @Age WHERE Name = @Name",
-    new Dictionary<string, object>
-    {
-        { "@Name", "測試使用者" },
-        { "@Age", 26 }
-    }
-);
-```
-
-### 5. 自訂連線池大小
-
-```csharp
+// 或指定連線池大小
 using var dataAccess = new SuperConnectionAccess(
     connectionString,
-    maxPoolSize: 200,  // 最大連線數
-    minPoolSize: 10    // 最小連線數
+    maxPoolSize: 100,  // 最大連線數
+    minPoolSize: 5     // 最小連線數
 );
 ```
 
-## 授權
+特點：
+- 自動管理連線池
+- 適合需要頻繁查詢的場景
+- 減少連線建立和斷開的開銷
+- 支援交易操作
+- 需要實作 IDisposable 介面
 
-Copyright (c) 2024 Kiv. All rights reserved. 
+### 2. 即時斷開模式
+
+```csharp
+// 建立資料存取物件（不使用連線池）
+var dataAccess = new SuperConnectionAccess(connectionString, useConnectionPool: false);
+```
+
+特點：
+- 每次查詢時建立新連線
+- 查詢完成後立即斷開連線
+- 適合不需要頻繁查詢的場景
+- 減少資料庫連線的佔用時間
+- 不需要實作 IDisposable 介面
+- 不支援交易操作
+
+## 系統需求
+
+- .NET 6.0 或更高版本
+- SQL Server 2012 或更高版本
+- Microsoft.Data.SqlClient 5.1.4 或更高版本
+
+## 注意事項
+
+1. 請確保正確設定連線字串
+2. 建議使用參數化查詢以避免 SQL 注入
+3. 適當選擇連線模式以符合使用場景
+4. 使用連線池模式時記得正確釋放資源（使用 using 語句）
+5. 交易操作必須使用連線池模式 
