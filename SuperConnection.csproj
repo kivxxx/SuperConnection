@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Kiv.SuperConnection</RootNamespace>
     <AssemblyName>SuperConnection</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>
