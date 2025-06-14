@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "77TRTrwHuQA=",
+  "dgSpecHash": "YFK6aenreNM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tung\\Desktop\\sqlConnection\\SuperConnection.csproj",
+  "projectFilePath": "C:\\Users\\Tung\\Desktop\\SuperConnection\\SuperConnection.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tung\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Tung\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SuperConnection")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb2c7efb90172964a19d52fea2d89f6f38611b26")]
 [assembly: System.Reflection.AssemblyProductAttribute("SuperConnection")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SuperConnection")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tung\\Desktop\\sqlConnection\\SuperConnection.csproj": {}
+    "C:\\Users\\Tung\\Desktop\\SuperConnection\\SuperConnection.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tung\\Desktop\\sqlConnection\\SuperConnection.csproj": {
+    "C:\\Users\\Tung\\Desktop\\SuperConnection\\SuperConnection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tung\\Desktop\\sqlConnection\\SuperConnection.csproj",
+        "projectUniqueName": "C:\\Users\\Tung\\Desktop\\SuperConnection\\SuperConnection.csproj",
         "projectName": "SuperConnection",
-        "projectPath": "C:\\Users\\Tung\\Desktop\\sqlConnection\\SuperConnection.csproj",
+        "projectPath": "C:\\Users\\Tung\\Desktop\\SuperConnection\\SuperConnection.csproj",
         "packagesPath": "C:\\Users\\Tung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tung\\Desktop\\sqlConnection\\obj\\",
+        "outputPath": "C:\\Users\\Tung\\Desktop\\SuperConnection\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\VS Share\\NuGetPackages"
