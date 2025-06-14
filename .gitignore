@@ -1,0 +1,79 @@
+# .NET 編譯輸出
+bin/
+obj/
+
+# Visual Studio 檔案
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Visual Studio Code 檔案
+.vscode/
+*.code-workspace
+
+# 建置結果
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 快取/選項目錄
+.vs/
+
+# NuGet 套件
+*.nupkg
+# NuGet Symbol 套件
+*.snupkg
+# 套件資料夾
+packages/
+# NuGet v3 的專案.json 檔案會產生更多可忽略的檔案
+*.nuget.props
+*.nuget.targets
+
+# 使用者特定檔案
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 使用者特定檔案 (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono 自動產生的檔案
+mono_crash.*
+
+# Windows 圖片快取
+Thumbs.db
+ehthumbs.db
+
+# 資料夾設定檔
+Desktop.ini
+
+# 重新導向資料夾
+$RECYCLE.BIN/
+
+# Windows 安裝程式檔案
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows 捷徑
+*.lnk
+
+# JetBrains Rider
+.idea/
+*.sln.iml 
