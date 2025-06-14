@@ -1,0 +1,12 @@
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.csproj.AssemblyReference.cache
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.AssemblyInfoInputs.cache
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.AssemblyInfo.cs
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Tung\Desktop\sqlConnection\bin\Debug\net6.0\SqlConnectionLibrary.deps.json
+C:\Users\Tung\Desktop\sqlConnection\bin\Debug\net6.0\SqlConnectionLibrary.dll
+C:\Users\Tung\Desktop\sqlConnection\bin\Debug\net6.0\SqlConnectionLibrary.pdb
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.dll
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\refint\SqlConnectionLibrary.dll
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\SqlConnectionLibrary.pdb
+C:\Users\Tung\Desktop\sqlConnection\obj\Debug\net6.0\ref\SqlConnectionLibrary.dll
