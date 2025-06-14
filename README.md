@@ -1,18 +1,20 @@
 # SuperConnection
 
-SuperConnection 是一個高效能的 SQL Server 資料庫連線管理與資料存取元件，提供連線池管理、非同步操作支援和交易處理功能。
+SuperConnection 是一個高效能的 SQL Server 資料庫連線管理與資料存取元件，專為 .NET 應用程式設計。
 
-## 核心功能
+## 功能列表
 
-- 自動連線池管理
-- 非同步操作支援
-- 交易處理
-- 資源自動釋放
-- 執行緒安全
-- 高效能設計
-- 支援參數化查詢
-- 自動重連機制
-- 連線狀態監控
+1. **連線管理**
+   - 自動連線池管理
+   - 自動重連機制
+   - 連線狀態監控
+   - 資源自動釋放
+
+2. **資料操作**
+   - 非同步查詢
+   - 交易處理
+   - 參數化查詢
+   - 批次處理
 
 ## 系統需求
 
@@ -20,21 +22,9 @@ SuperConnection 是一個高效能的 SQL Server 資料庫連線管理與資料�
 - SQL Server 2012 或更高版本
 - Microsoft.Data.SqlClient 5.1.4 或更高版本
 
-## 安裝方式
+## 使用方法
 
-### NuGet 套件
-
-```bash
-dotnet add package SuperConnection
-```
-
-### 手動安裝
-
-1. 下載專案
-2. 編譯專案
-3. 將編譯後的 DLL 加入您的專案參考
-
-## 基本使用
+### 1. 基本查詢
 
 ```csharp
 using Kiv.SuperConnection;
@@ -51,8 +41,11 @@ var dataTable = await dataAccess.ExecuteQueryAsync(
     "SELECT * FROM Users WHERE Age >= @Age",
     new Dictionary<string, object> { { "@Age", 18 } }
 );
+```
 
-// 執行交易
+### 2. 執行交易
+
+```csharp
 await dataAccess.ExecuteTransactionAsync(async (transaction) =>
 {
     // 插入資料
@@ -67,23 +60,52 @@ await dataAccess.ExecuteTransactionAsync(async (transaction) =>
 });
 ```
 
-## 最佳實踐
+### 3. 查詢單一值
 
-1. 連線管理
-   - 使用 `using` 語句確保資源正確釋放
-   - 適當設定連線池大小
-   - 定期檢查連線狀態
+```csharp
+// 查詢數量
+var count = await dataAccess.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Users");
 
-2. 查詢優化
-   - 使用參數化查詢
-   - 避免使用 `SELECT *`
-   - 適當使用索引
-   - 使用適當的資料類型
+// 查詢字串
+var name = await dataAccess.ExecuteScalarAsync<string>(
+    "SELECT Name FROM Users WHERE Id = @Id",
+    new Dictionary<string, object> { { "@Id", 1 } }
+);
+```
 
-3. 交易處理
-   - 使用交易處理相關操作
-   - 設定適當的交易隔離等級
-   - 及時提交或回滾交易
+### 4. 執行非查詢命令
+
+```csharp
+// 插入資料
+await dataAccess.ExecuteNonQueryAsync(
+    "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)",
+    new Dictionary<string, object>
+    {
+        { "@Name", "測試使用者" },
+        { "@Age", 25 }
+    }
+);
+
+// 更新資料
+await dataAccess.ExecuteNonQueryAsync(
+    "UPDATE Users SET Age = @Age WHERE Name = @Name",
+    new Dictionary<string, object>
+    {
+        { "@Name", "測試使用者" },
+        { "@Age", 26 }
+    }
+);
+```
+
+### 5. 自訂連線池大小
+
+```csharp
+using var dataAccess = new SuperConnectionAccess(
+    connectionString,
+    maxPoolSize: 200,  // 最大連線數
+    minPoolSize: 10    // 最小連線數
+);
+```
 
 ## 授權
 
